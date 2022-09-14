@@ -1,4 +1,6 @@
-## Hi there 👋
+## Chessticulate is a simple, bare-bones chess website. 
+
+### 
 
 <!--
 
