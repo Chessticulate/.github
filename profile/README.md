@@ -1,4 +1,4 @@
-## Welcome to Chessticulate! This organization hosts several components related to our chess website, including a JavaScript chess engine called Shallowpink, a chessticulate api built with FastAPI, and a worker pool service to validate moves using Shallowpink.
+## Welcome to Chessticulate! This organization hosts several components related to our chess website, including a chess engine called Shallowpink, a chessticulate api built with FastAPI, and a worker pool service to validate moves using Shallowpink.
 
 <!--
 
