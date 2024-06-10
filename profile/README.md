@@ -1,6 +1,9 @@
 # Welcome to Chessticulate! 
 
-## This organization hosts several components related to our chess website, including a chess engine called Shallowpink, a chessticulate api built with FastAPI, and a worker pool service to validate moves using Shallowpink.
+## This organization encompasses all of the components comprising our chess website. Those components include: 
+  ### - *Shallowpink*, a chess engine written in javascript 
+  ### - *chess-workers*, a scalable REST API wrapper for shallowpink 
+  ### - *chessticulate-api*, the api for the chessticulate website built with FastApi
 
 <!--
 
