@@ -1,7 +1,7 @@
 # Welcome to Chessticulate!
 
 This organization encompasses all of the components comprising our chess website (as well as a few false-starts and experiments). The primary components of Chessticulate are:
-- [shallow-pink](https://github.com/chessticulate/shallow-pink): A chess engine written in javascript 
+- [shallow-pink](https://github.com/chessticulate/shallow-pink): A chess library written in javascript 
 - [chess-workers](https://github.com/chessticulate/chess-workers): A scalable REST API wrapper for shallowpink 
 - [chessticulate-api](https://github.com/chessticulate/chessticulate-api): The api for the chessticulate website built with FastAPI
 
@@ -13,7 +13,7 @@ After some time developing that I decided to collaborate with my brother [krglaw
 
 ## Where We're At
 
-- shallow-pink [(it's a pun)](https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)) - Our JavaScript chess engine. It is more or less "done". The core functionality is there, and it is fully tested. It includes a rudimentary AI that has been implemented using a simple Minimax algorithm. We have tentative plans to:
+- shallow-pink [(it's a pun)](https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)) - Our JavaScript chess library. It is more or less "done". The core functionality is there, and it is fully tested. It includes a rudimentary AI that has been implemented using a simple Minimax algorithm. We have tentative plans to:
   - reimplement the library in either C or C++.
   - improve upon the ai using a Monte Carlo Tree Search or Neural Network, or both.
 
