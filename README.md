@@ -1,2 +1,2 @@
 # Chessticulate
-(project page)[https://github.com/chessticulate]
+[project page](https://github.com/chessticulate)
