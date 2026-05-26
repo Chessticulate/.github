@@ -2,32 +2,44 @@
 
 This organization encompasses all of the components comprising our chess website (as well as a few false-starts and experiments). The primary components of Chessticulate are:
 - [shallow-pink](https://github.com/chessticulate/shallow-pink): A chess library written in javascript 
-- [chess-workers](https://github.com/chessticulate/chess-workers): A scalable REST API wrapper for shallowpink 
+- [chess-workers](https://github.com/chessticulate/chess-workers): A scalable REST API wrapper for shallow-pink 
 - [chessticulate-api](https://github.com/chessticulate/chessticulate-api): The api for the chessticulate website built with FastAPI
+- [chessticulate-fe](https://github.com/chessticulate/chessticulate-fe): The frontend for the website built with Next.js
 
 ## The Story
 
-I ([bglaws](https://github.com/bglaws)) became enamored with the game of Chess, [as many of us did](https://www.chess.com/blog/CHESScom/chess-is-booming-and-our-servers-are-struggling), during the peak of the COVID-19 pandemic. I was also still in college learning Java at the time, and these two interests of mine merged and blossomed into a [terminal chess program](https://github.com/bglaws/chess) I built. Later on I began learning JavaScript at an internship. That, combined with a dissatisfaction with the chess programming I had done previously, led me to make a second attempt at writing an improved chess engine, this time in JavaScript. Yes, JS is probably not the most efficient option in hindsight (especially if you want to add AI into the mix), but I really wanted to improve my JavaScript skills. Additionally, I had some vague ideas of building my own simple chess website (for fun of course), and so building the engine in JS would allow it to be used on the frontend of such a site.
+I ([bglaws](https://github.com/bglaws)) became enamored with the game of Chess, [as many of us did](https://www.chess.com/blog/CHESScom/chess-is-booming-and-our-servers-are-struggling), during the peak of the COVID-19 pandemic. I was also still in college learning Java at the time, and these two interests of mine merged and blossomed into a [terminal chess program](https://github.com/bglaws/chess) I built. Later on I began learning JavaScript at an internship. That, combined with a dissatisfaction with the chess programming I had done previously, led me to make a second attempt at writing an improved chess engine, this time in JavaScript. Yes, JS is probably not the most efficient option in hindsight (especially if you want to add AI into the mix), but I really wanted to improve my JavaScript skills. Additionally, I had some vague ideas of building my own simple chess website (for fun of course), and building the engine in JS would allow it to be used on the frontend of such a site.
 
 After some time developing that I decided to collaborate with my brother [krglaws](https://github.com/krglaws) on building the chess website I had been picturing. This project is the product of that collaboration.
 
 ## Where We're At
 
-- shallow-pink [(it's a pun)](https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)) - Our JavaScript chess library. It is more or less "done". The core functionality is there, and it is fully tested. It includes a rudimentary AI that has been implemented using a simple Minimax algorithm. We have tentative plans to:
+### shallow-pink [(it's a pun)](https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)) 
+Our JavaScript chess library. It is more or less "done". The core functionality is there, and it is fully tested. It includes a rudimentary AI that has been implemented using a simple Minimax algorithm. We have tentative plans to:
   - reimplement the library in either C or C++.
-  - improve upon the ai using a Monte Carlo Tree Search or Neural Network, or both.
+  - improve upon the AI using a Monte Carlo tree search or neural network, or both.
 
-- chessticulate-api - The REST API for our website. We decided to write our API in Python using the FastAPI web framework since it comes with excellent data validation and auto-generated swagger pages. The database we are using for now is sqlite, although we have plans to migrate to postgres at some point. This part of the project is mostly done, barring whatever additions or enhancements we decide to add later on.
+### chessticulate-api
+The REST API for our website. We decided to write our API in Python using the FastAPI web framework since it comes with excellent data validation and auto-generated swagger pages. The database we are using for now is sqlite, although we have plans to migrate to postgres at some point. This part of the project is mostly done, barring whatever additions or enhancements we decide to add later on.
 
-- chess-workers - A small expressjs REST API wrapper around shallow-pink.
+### chess-workers
+A small expressjs REST API wrapper around shallow-pink. This provides move validation on the server side. When a player submits a move to the API, the API makes its own request to chess-workers to validate the move, and the response is used to update the new state of the game.
+
+### chessticulate-fe
+The frontend for our website. Built with Next.js. It provides a simple UI that allows users to play against shallow pink in the browser, locally against another human, and also the ability to play live games against others in real-time.
 
 Our reasoning for separating shallow-pink from the python API via chess-workers (aside from the fact that they are written in different languages) is as follows:
   1. by having shallow-pink, which requires significant CPU resources, execute in a separate process from the python API and moving shallow-pink to an IO-bound process instead of a CPU-bound process (at least from python's perspective), we avoid holding up FastAPI's eventloop.
   2. it is easier to scale a project when it has been broken up into simpler components.
 
-## TODO
+## CI / CD
+Since it's just the two of us developing this project, we decided to keep our CI/CD system straightforward; for each of the projects described, the main branch is our "production" branch, where merges to main trigger our deployment pipelines straight to our live website. The pipelines deploy all of our services onto a single raspberry pi using github webhooks and a simple python HTTP server that listens for merge events.
 
-We are currently working on deploying the components we have with Docker onto a raspberry pi. After that, our next step is to build the frontend, probably with React.
+## TODO
+Aside from some bugs, there are a number of features that could be added/enhanced. For example, you can't see who it is you are playing against in multiplayer games. Also, we are lacking some "social media" aspects, like following other players, inviting players to matches directly by name, chatting with other players, viewing another player's stats and game history, etc. We have paused development on this project for now due to our schedules with work and family obligations, but we hope to add some polish here and there soon.
+
+## A note on LLM-assisted development
+We would just like to state for the record that 100% of the code in this project was written by us, not an LLM like Claude or ChatGPT -- not that we fault anyone using LLMs in their own work or personal projects. Even though we *could* have used AI (and could still) we felt that the purpose of this project was to flex our programming muscles, and learn new things along the way. Asking an LLM to simply generate the website for us would have defeated that purpose.
 
 <!--
 
